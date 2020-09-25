@@ -60,7 +60,7 @@ public class ProdutoDao {
 			prep.setDouble(4, p.getPreco_venda());
 			prep.setInt(5, p.getCategoria());
 			prep.setInt(6, p.getCod_fornecedor());
-			prep.setInt(5, p.getId());
+			prep.setInt(7, p.getId());
 			prep.execute();
 			
 		} catch (Exception e) {
