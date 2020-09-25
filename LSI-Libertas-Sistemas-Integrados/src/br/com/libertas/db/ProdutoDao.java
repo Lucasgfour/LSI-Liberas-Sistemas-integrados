@@ -23,7 +23,7 @@ public class ProdutoDao {
 			prep.setDouble(3, p.getPreco_custo());
 			prep.setDouble(4, p.getPreco_venda());
 			prep.setInt(5, p.getCategoria());
-			prep.setInt(6, p.getCategoria());
+			prep.setInt(6, p.getCod_fornecedor());
 			prep.execute();
 			
 		} catch (Exception e) {
