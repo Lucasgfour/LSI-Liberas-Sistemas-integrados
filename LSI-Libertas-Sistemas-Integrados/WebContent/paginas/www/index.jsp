@@ -117,7 +117,7 @@
           </div>
         <!------------------------------------------------------------------------------------------------------------------------------>
         <!-- NotÃ­cias ------------------------------------------------------------------------------------------------------------------>
-          <div class="page stacked" data-name="tela_produtos" id="tela_produtos">
+          <div class="page" data-name="tela_produtos" id="tela_produtos">
             <div class="navbar">
               <div class="navbar-inner">
                 <div class="left">
