@@ -10,8 +10,11 @@ public class Conexao {
 	public Conexao() {
 		try {
 			
-			String url = "jdbc:mysql://localhost:3306/bdlsi";
-			conexao = DriverManager.getConnection(url, "admin", "lsi2020");
+			//String url = "jdbc:mysql://localhost:3306/bdlsi";
+			//conexao = DriverManager.getConnection(url, "admin", "lsi2020");
+			Class.forName("org.mariadb.jdbc.Driver");
+			String url = "jdbc:mariadb://localhost/bdlsi";
+			conexao = DriverManager.getConnection(url, "root", "123456");
 		} 
 		
 		catch (Exception e) {
