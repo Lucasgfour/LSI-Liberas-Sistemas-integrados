@@ -15,7 +15,7 @@ var myApp = new Framework7({
       versao: "",
       banco: "",
       teste: true,
-      // url_raiz: "http://localhost:8080/PrefeituraJacui",
+      // url_raiz: "http://localhost:8080/",
       url_raiz: "",
       cor_app: "#007aff",
       iziModal: {
