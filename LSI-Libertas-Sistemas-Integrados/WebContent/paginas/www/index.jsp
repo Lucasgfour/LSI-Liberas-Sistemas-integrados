@@ -40,7 +40,7 @@
               <ul>
                 <li class="item-content item-input">
                   <div class="item-inner">
-                    <div class="item-title item-label">UsuÃ¡rio</div>
+                    <div class="item-title item-label">Usuário</div>
                     <div class="item-input-wrap">
                       <input type="text" name="email" placeholder="UsuÃ¡rio" autocomplete="off" required>
                     </div>
@@ -147,10 +147,10 @@
                       <table id="table_produtos" class="display dataTable collapsed">
                         <thead>
                           <tr>
-                            <th>CÃ³digo</th>
-                            <th>DescriÃ§Ã£o</th>
-                            <th>PreÃ§o Custo</th>
-                            <th>PreÃ§o Venda</th>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Preçoo Custo</th>
+                            <th>Preço Venda</th>
                             <th>Categoria</th>
                             <th>Fornecedor</th>
                           </tr>
@@ -204,33 +204,33 @@
                     </li> -->
                     <li class="item-content item-input col-50">
                       <div class="item-inner">
-                        <div class="item-title item-label">CÃ³digo</div>
+                        <div class="item-title item-label">Código</div>
                         <div class="item-input-wrap">
-                          <input type="text" placeholder="CÃ³digo" name="codigo" required>
+                          <input type="text" placeholder="Código" name="codigo" autocomplete="off" required>
                         </div>
                       </div>
                     </li>
                     <li class="item-content item-input col-50">
                       <div class="item-inner">
-                        <div class="item-title item-label">DescriÃ§Ã£o</div>
+                        <div class="item-title item-label">Descrição</div>
                         <div class="item-input-wrap">
-                          <input type="text" placeholder="DescriÃ§Ã£o" name="descricao" required>
+                          <input type="text" placeholder="Descrição" name="descricao" autocomplete="off" required>
                         </div>
                       </div>
                     </li>
                     <li class="item-content item-input col-50">
                       <div class="item-inner">
-                        <div class="item-title item-label">PreÃ§o Compra</div>
+                        <div class="item-title item-label">Preço Compra</div>
                         <div class="item-input-wrap">
-                          <input type="number" step="any" placeholder="PreÃ§o Compra" name="preco_custo" required>
+                          <input type="number" step="any" placeholder="Preço Compra" name="preco_custo" required>
                         </div>
                       </div>
                     </li>
                     <li class="item-content item-input col-50">
                       <div class="item-inner">
-                        <div class="item-title item-label">PreÃ§o Venda</div>
+                        <div class="item-title item-label">Preço Venda</div>
                         <div class="item-input-wrap">
-                          <input type="number" step="any" placeholder="PreÃ§o Venda" name="preco_venda" required>
+                          <input type="number" step="any" placeholder="Preço Venda" name="preco_venda" required>
                         </div>
                       </div>
                     </li>
