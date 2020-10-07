@@ -9,7 +9,7 @@ import br.com.libertas.dto.Produto;
 
 
 public class ProdutoDao {
-	
+	private static LinkedList<Produto> lista = new LinkedList<Produto>();
 	// Inserir um novo produto
 	public void inserirProduto (Produto p) {
 		Conexao con = new Conexao();
@@ -93,6 +93,35 @@ public class ProdutoDao {
 		}
 		con.desconecta();
 		return p;
+	}
+	
+	public LinkedList<Produto> listarProduto () {
+		
+		Conexao con = new Conexao();
+
+		LinkedList<Produto> lista = new LinkedList<Produto>();
+		try {
+			String sql = "SELECT * FROM cad_produto";
+			Statement sta = con.getConexao().createStatement();
+			ResultSet res = sta.executeQuery(sql);
+			while(res.next()) {
+				Produto p = new Produto();
+				p.setCodigo(res.getString("codigo"));
+				p.setDescricao(res.getString("descricao"));
+				p.setPreco_custo(res.getDouble("preco_custo"));
+				p.setPreco_venda(res.getDouble("preco_venda"));
+				p.setCategoria(res.getInt("categoria"));
+				p.setCod_fornecedor(res.getInt("cod_fornecedor"));
+				p.setId(res.getInt("id"));
+				lista.add(p);
+			}
+			res.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		con.desconecta();
+		return lista;
 	}
 	// Listar todos os produtos cadastrados no bd
 	public LinkedList<Produto> listar(){
