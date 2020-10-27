@@ -47,15 +47,12 @@ public class ProdutoDao {
 			prep.setDouble(4, p.getPreco_venda());
 			prep.setInt(5, p.getCategoria());
 			prep.setInt(6, p.getCod_fornecedor());
-			if(prep.execute()) {
-				saida = "Produto cadastrado com sucesso !"; 
-			} else {
-				saida = "Não foi possivel cadastro o produto, favor verificar os dados !";
-			}
+			prep.execute();
+			saida = "Produto cadastrado com sucesso !"; 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			saida = "Não foi possivel cadastrar o produto, motivo : " + e.getStackTrace().toString();
+			saida = "Não foi possivel cadastrar o produto, motivo : " + e.toString();
 		}
 		con.desconecta();
 		return saida;

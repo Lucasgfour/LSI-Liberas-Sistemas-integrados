@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-
 import com.google.gson.Gson;
 
 import br.com.libertas.db.ProdutoDao;
 import br.com.libertas.dto.Produto;
 
 /**
- * Servlet implementation class CadastroProduto
+ * Servlet implementation class TabelaProduto
  */
-@WebServlet("/CadastroProduto")
-public class CadastroProduto extends HttpServlet {
+@WebServlet("/TabelaProduto")
+public class TabelaProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CadastroProduto() {
+    public TabelaProduto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,28 +33,31 @@ public class CadastroProduto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Código para Cadastro de Produto
-		ProdutoDao pDao = new ProdutoDao();
-		Produto p = new Produto();
+		ProdutoDao pdao = new ProdutoDao();
+		String saidaTabela = "";
 		Gson gson = new Gson();
 		
-		p.setCodigo(request.getParameter("codigo"));
-		p.setDescricao(request.getParameter("descricao"));
-		p.setPreco_custo(Double.parseDouble(request.getParameter("preco_custo")));
-		p.setPreco_venda(Double.parseDouble(request.getParameter("preco_venda")));
-		p.setCategoria(Integer.parseInt(request.getParameter("categoria")));;
-		p.setCod_fornecedor(Integer.parseInt(request.getParameter("cod_fornecedor")));
+		for (Produto p: pdao.listarProduto()) {
+		saidaTabela = saidaTabela + "<tr>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getCodigo() + "</td>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getDescricao() + "</td>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getPreco_custo() + "</td>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getPreco_venda() + "</td>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getCategoria() + "</td>\n";
+		saidaTabela = saidaTabela + "	<td>" + p.getCod_fornecedor() + "</td>\n";
+		saidaTabela = saidaTabela + "</tr>\n";
+		}
 		
 		PrintWriter out = response.getWriter();
-		String res = gson.toJson(pDao.inserirProdutoAjax(p));
+		String res = gson.toJson(saidaTabela);
 		out.print(res);
-		System.out.println(res);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

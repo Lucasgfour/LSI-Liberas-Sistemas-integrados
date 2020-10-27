@@ -18,6 +18,7 @@
         init.boas_vindas();
       },
       boas_vindas: function(){
+		AtualizarTabelaProduto();
         localStorage.getItem("modo_noturno") == "true" ? $("body").addClass("theme-dark") : $("body").removeClass("theme-dark");
       }
     }
@@ -28,6 +29,13 @@
       init.versao();
    }
 /* Paginas ******************************************************************************************************************************/
+  function AtualizarTabelaProduto() {
+ 	var tabProduto = Promessa("TabelaProduto", undefined, undefined);
+	tabProduto.then(function(retorno){
+		$("#tbody_produto").html(retorno);
+	})
+  }
+
   $("#login").ready(function(){
     var page = $("#login");
     var form = page.find("form");
@@ -55,7 +63,8 @@
       if(!jQuery.isEmptyObject(data)){
         var resultado = Promessa("CadastroProduto", data, undefined);
 		resultado.then(function(retorno){
-   			alert(retorno);
+   			Toast(retorno);
+			AtualizarTabelaProduto();
 		})
       }
     })

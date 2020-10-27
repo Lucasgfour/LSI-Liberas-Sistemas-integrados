@@ -155,22 +155,9 @@
                             <th>Fornecedor</th>
                           </tr>
                         </thead>
-                        <tbody>
-                        	<%
-								ProdutoDao pdao = new ProdutoDao();
-								for (Produto p: pdao.listarProduto()) {
-							%>
-								<tr>
-									<td><%= p.getCodigo() %></td>
-									<td><%= p.getDescricao() %></td>
-									<td><%= p.getPreco_custo() %></td>
-									<td><%= p.getPreco_venda() %></td>
-									<td><%= p.getCategoria() %></td>
-									<td><%= p.getCod_fornecedor() %></td>
-								</tr>
-							<% 
-								}
-							%>
+                        <tbody id="tbody_produto">                         
+                        	
+							
                         </tbody>
                       </table>
                     </div>
@@ -183,7 +170,7 @@
                   <button class="col button button-fill button-round">Salvar NotÃ­cia</button>
                   <button class="col button button-fill button-round color-orange">NotÃ­cia Desativada</button>
                 </div> -->
-                <form class="list no-hairlines-md"  method="post"> 
+                <form onsubmit="return false;" class="list no-hairlines-md"  method="post"> 
                 	<!--  action="salvar.jsp" -->
                   <!-- <input type="hidden" name="idnoticia_informacao"> -->
                   <ul class="row no-gap">
