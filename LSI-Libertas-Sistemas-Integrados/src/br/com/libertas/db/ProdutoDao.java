@@ -32,6 +32,35 @@ public class ProdutoDao {
 		con.desconecta();
 	}
 	
+	// Inserir um produto com retorno !
+	public String inserirProdutoAjax (Produto p) {
+		Conexao con = new Conexao();
+		String saida = "Sem Retorno !";
+		try {
+			String sql = "INSERT INTO cad_produto "
+					+ "(codigo, descricao, preco_custo, preco_venda, categoria, cod_fornecedor)"
+					+ "VALUES  (?, ?, ?, ?, ?, ?)";
+			PreparedStatement prep = con.getConexao().prepareStatement(sql);
+			prep.setString(1, p.getCodigo());
+			prep.setString(2, p.getDescricao());
+			prep.setDouble(3, p.getPreco_custo());
+			prep.setDouble(4, p.getPreco_venda());
+			prep.setInt(5, p.getCategoria());
+			prep.setInt(6, p.getCod_fornecedor());
+			if(prep.execute()) {
+				saida = "Produto cadastrado com sucesso !"; 
+			} else {
+				saida = "Não foi possivel cadastro o produto, favor verificar os dados !";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			saida = "Não foi possivel cadastrar o produto, motivo : " + e.getStackTrace().toString();
+		}
+		con.desconecta();
+		return saida;
+	}
+	
 	// Excluir um produto
 	public void excluirProduto (int id) {
 		Conexao con = new Conexao();

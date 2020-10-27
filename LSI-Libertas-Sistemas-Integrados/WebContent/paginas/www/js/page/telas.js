@@ -50,11 +50,22 @@
     var page = $("#tela_produtos")
     var form = page.find("form");
 
-    $("#btnCadastrarProduto").on("click", function(){
+	$("#btnCadastrarProduto").on("click", function(){
+      var data = Formulario.getValores(form)
+      if(!jQuery.isEmptyObject(data)){
+        var resultado = Promessa("CadastroProduto", data, undefined);
+		resultado.then(function(retorno){
+   			alert(retorno);
+		})
+      }
+    })
+
+    /* Antigo Click
+	$("#btnCadastrarProduto").on("click", function(){
       var data = Formulario.getValores(form)
       if(!jQuery.isEmptyObject(data)){
         console.log(data)
       }
-    })
+    })*/
   })
 /* Modal ********************************************************************************************************************************/

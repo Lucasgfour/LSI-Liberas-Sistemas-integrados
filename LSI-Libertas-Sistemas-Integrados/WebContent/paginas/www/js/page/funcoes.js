@@ -6,19 +6,18 @@
     }
 
     if(load == undefined)
-      myApp.preloader.show()
+     /* myApp.preloader.show()*/
 
     if (!parametros)
       parametros = {};
 
     // parametros["idpessoa"] = jQuery.isEmptyObject(Usuario_Dados.listar()) ? 0: Usuario_Dados.listar()["pessoa"]["idpessoa"];
-
     return Promise.resolve(
       jQuery.ajax({
         type: "POST",
         dataType: "json",
         data: parametros,
-        url: myApp["data"]["url_raiz"] + "/prefeitura_jacui?tela=" + tela
+        url: myApp["data"]["url_raiz"] + "/LSI-Libertas-Sistemas-Integrados/" + tela
       })
     ).finally(function() {
       myApp.preloader.hide();

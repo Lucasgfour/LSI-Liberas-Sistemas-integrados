@@ -183,7 +183,8 @@
                   <button class="col button button-fill button-round">Salvar NotÃ­cia</button>
                   <button class="col button button-fill button-round color-orange">NotÃ­cia Desativada</button>
                 </div> -->
-                <form class="list no-hairlines-md" action="salvar.jsp" method="post">
+                <form class="list no-hairlines-md"  method="post"> 
+                	<!--  action="salvar.jsp" -->
                   <!-- <input type="hidden" name="idnoticia_informacao"> -->
                   <ul class="row no-gap">
                     <!-- <li class="item-content item-input col-25">
