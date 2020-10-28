@@ -9,7 +9,16 @@ public class Produto {
 	private Double preco_venda;
 	private int categoria;
 	private int cod_fornecedor;
+	private int quantidade;
 	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	public int getId() {
 		return id;
 	}

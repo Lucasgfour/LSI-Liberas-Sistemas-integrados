@@ -15,16 +15,16 @@ import br.com.libertas.db.ProdutoDao;
 import br.com.libertas.dto.Produto;
 
 /**
- * Servlet implementation class TabelaProduto
+ * Servlet implementation class ExcluirProduto
  */
-@WebServlet("/TabelaProduto")
-public class TabelaProduto extends HttpServlet {
+@WebServlet("/ExcluirProduto")
+public class ExcluirProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TabelaProduto() {
+    public ExcluirProduto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +33,15 @@ public class TabelaProduto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		
-		ProdutoDao pdao = new ProdutoDao();
-//		String saidaTabela = "";
+		// TODO Auto-generated method stub
+		ProdutoDao pDao = new ProdutoDao();
 		Gson gson = new Gson();
 		
-		pw.print(gson.toJson(pdao.listarProduto()));
-		
-		
-//		for (Produto p: pdao.listarProduto()) {
-//		saidaTabela = saidaTabela + "<tr>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCodigo() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getDescricao() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getPreco_custo() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getPreco_venda() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCategoria() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCod_fornecedor() + "</td>\n";
-//		saidaTabela = saidaTabela + "</tr>\n";
-//		}
-//		
-//		PrintWriter out = response.getWriter();
-//		String res = gson.toJson(saidaTabela);
-//		out.print(res);
+		PrintWriter out = response.getWriter();
+//		System.out.println("id ==>" + request.getParameter("id"));
+		String res = gson.toJson(pDao.excluirProduto(Integer.parseInt(request.getParameter("id"))));
+		out.print(res);
+		System.out.println(res);
 	}
 
 	/**

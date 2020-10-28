@@ -15,16 +15,16 @@ import br.com.libertas.db.ProdutoDao;
 import br.com.libertas.dto.Produto;
 
 /**
- * Servlet implementation class TabelaProduto
+ * Servlet implementation class UpdateProduto
  */
-@WebServlet("/TabelaProduto")
-public class TabelaProduto extends HttpServlet {
+@WebServlet("/UpdateProduto")
+public class UpdateProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TabelaProduto() {
+    public UpdateProduto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +33,24 @@ public class TabelaProduto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		
-		ProdutoDao pdao = new ProdutoDao();
-//		String saidaTabela = "";
+		// TODO Auto-generated method stub
+		ProdutoDao pDao = new ProdutoDao();
+		Produto p = new Produto();
 		Gson gson = new Gson();
 		
-		pw.print(gson.toJson(pdao.listarProduto()));
+		p.setCodigo(request.getParameter("codigo"));
+		p.setDescricao(request.getParameter("descricao"));
+		p.setPreco_custo(Double.parseDouble(request.getParameter("preco_custo")));
+		p.setPreco_venda(Double.parseDouble(request.getParameter("preco_venda")));
+		p.setCategoria(Integer.parseInt(request.getParameter("categoria")));;
+		p.setCod_fornecedor(Integer.parseInt(request.getParameter("cod_fornecedor")));
+		p.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+		p.setId(Integer.parseInt(request.getParameter("id")));
 		
-		
-//		for (Produto p: pdao.listarProduto()) {
-//		saidaTabela = saidaTabela + "<tr>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCodigo() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getDescricao() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getPreco_custo() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getPreco_venda() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCategoria() + "</td>\n";
-//		saidaTabela = saidaTabela + "	<td>" + p.getCod_fornecedor() + "</td>\n";
-//		saidaTabela = saidaTabela + "</tr>\n";
-//		}
-//		
-//		PrintWriter out = response.getWriter();
-//		String res = gson.toJson(saidaTabela);
-//		out.print(res);
+		PrintWriter out = response.getWriter();
+		String res = gson.toJson(pDao.alterarProduto(p));
+		out.print(res);
+		System.out.println(res);
 	}
 
 	/**

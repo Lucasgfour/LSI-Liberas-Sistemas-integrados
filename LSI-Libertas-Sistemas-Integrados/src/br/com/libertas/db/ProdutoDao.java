@@ -38,8 +38,8 @@ public class ProdutoDao {
 		String saida = "Sem Retorno !";
 		try {
 			String sql = "INSERT INTO cad_produto "
-					+ "(codigo, descricao, preco_custo, preco_venda, categoria, cod_fornecedor)"
-					+ "VALUES  (?, ?, ?, ?, ?, ?)";
+					+ "(codigo, descricao, preco_custo, preco_venda, categoria, cod_fornecedor, quantidade)"
+					+ "VALUES  (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement prep = con.getConexao().prepareStatement(sql);
 			prep.setString(1, p.getCodigo());
 			prep.setString(2, p.getDescricao());
@@ -47,37 +47,44 @@ public class ProdutoDao {
 			prep.setDouble(4, p.getPreco_venda());
 			prep.setInt(5, p.getCategoria());
 			prep.setInt(6, p.getCod_fornecedor());
+			prep.setInt(7, p.getQuantidade());
 			prep.execute();
 			saida = "Produto cadastrado com sucesso !"; 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			saida = "NÃ£o foi possivel cadastrar o produto, motivo : " + e.toString();
+			saida = "Não foi possivel cadastrar o produto, motivo : " + e.toString();
 		}
 		con.desconecta();
 		return saida;
 	}
 	
-	// Excluir um produto
-	public void excluirProduto (int id) {
+	// Excluir um produto com retorno
+	public String excluirProduto (int id) {
 		Conexao con = new Conexao();
+		String saida = "Sem Retorno !";
 		try {
 			String sql = "DELETE FROM cad_produto WHERE id = ?";
+			System.out.println(sql);
 			PreparedStatement prep = con.getConexao().prepareStatement(sql);
 			prep.setInt(1, id);
 			prep.execute();
+			saida = "Produto excluido com sucesso !"; 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			saida = "Não foi possivel excluir o produto, motivo : " + e.toString();
 		}
 		con.desconecta();
+		return saida;
 	}
 	
 	// Alterar um produto
-	public void alterarProduto (Produto p) {
+	public String alterarProduto (Produto p) {
 		Conexao con = new Conexao();
+		String saida = "Sem Retorno !";
 		try {
-			String sql = "UPDATE cad_produto SET codigo=?, descricao=?, preco_custo=?, preco_venda=?, categoria=?, cod_fornecedor=?"
+			String sql = "UPDATE cad_produto SET codigo=?, descricao=?, preco_custo=?, preco_venda=?, categoria=?, cod_fornecedor=?, quantidade=? "
 					+ "WHERE id=?";
 			PreparedStatement prep = con.getConexao().prepareStatement(sql);
 			prep.setString(1, p.getCodigo());
@@ -86,13 +93,17 @@ public class ProdutoDao {
 			prep.setDouble(4, p.getPreco_venda());
 			prep.setInt(5, p.getCategoria());
 			prep.setInt(6, p.getCod_fornecedor());
-			prep.setInt(7, p.getId());
+			prep.setInt(7, p.getQuantidade());
+			prep.setInt(8, p.getId());
 			prep.execute();
+			saida = "Produto atualizado com sucesso !"; 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			saida = "Não foi possivel atualizar o produto, motivo : " + e.toString();
 		}
 		con.desconecta();
+		return saida;
 	}
 	
 	// Consultar produto 
@@ -139,6 +150,7 @@ public class ProdutoDao {
 				p.setCategoria(res.getInt("categoria"));
 				p.setCod_fornecedor(res.getInt("cod_fornecedor"));
 				p.setId(res.getInt("id"));
+				p.setQuantidade(res.getInt("quantidade"));
 				lista.add(p);
 			}
 			res.close();
@@ -166,6 +178,7 @@ public class ProdutoDao {
 				p.setCategoria(res.getInt("categoria"));
 				p.setCod_fornecedor(res.getInt("cod_fornecedor"));
 				p.setId(res.getInt("id"));
+				p.setQuantidade(res.getInt("quantidade"));
 				lista.add(p);
 			}
 			res.close();

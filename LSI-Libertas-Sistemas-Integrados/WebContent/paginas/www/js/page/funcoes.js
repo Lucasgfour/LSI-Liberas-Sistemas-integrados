@@ -409,6 +409,52 @@
         $("body").addClass("theme-dark")
       }
     }
+    this.listarProdutos = function(data){
+      var page = $("#tela_produtos")
+      var table = $("#table_produtos")
+
+      Util.dataTableDestroy(table)
+
+      for (var key in data){
+        var item = data[key]
+
+        table.find("tbody").append(`<tr>`
+        + `<td>${item["codigo"]}</td>`
+        + `<td>${item["descricao"]}</td>`
+        + `<td>R$ ${Util.formataDuasCasas(item["preco_custo"])}</td>`
+        + `<td>R$ ${Util.formataDuasCasas(item["preco_venda"])}</td>`
+        + `<td>${item["categoria"]}</td>`
+        + `<td>${item["cod_fornecedor"]}</td>`
+        + `<td>${item["quantidade"]}</td>`
+        // + `<td class="button" onclick="Util.copiaAreaTransferencia('${item["key_noticia_informacao"]}')">${item["key_noticia_informacao"]}</td>`
+        // + `<td>${item["ativo"] ? "Ativo" : "Desativada"}</td>`
+        + `<td><button class="button button-fill button-small button-round color-green" onclick="Administrador.modalUpdate(${Util.normaliza(item)})">Editar</button> </td>`
+        + `<td><button class="button button-fill button-small button-round color-red" onclick="Cruds.excluirProduto(${item["id"]})">Excluir</button> </td>`
+        + `</tr>`);
+      }
+      table.DataTable({
+        retrieve: true,
+        destroy: true,
+        paging: true,
+        lengthChange: false,
+        searching: true,
+        ordering: true,
+        info: false,
+        responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        language: myApp["data"]["dataTable"],
+      });
+
+    }
+    this.modalUpdate = function(data){
+      var page = $(".popup-updateProtuto")
+      var form = $("#formulario_updateProduto")
+
+      Formulario.setValores(form, data)
+
+      myApp.popup.open(".popup-updateProtuto");
+    }
    }
   function NoticiaInformacao(){
     this.carregaLista = function(data, tipo){

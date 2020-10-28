@@ -1,6 +1,7 @@
 /* Global ********************************************************************************************************************************/
   var Formulario = new Formulario();
   var Util = new Util();
+  var Cruds = new Cruds();
   var Administrador = new Administrador();
 /* Global CRUD ***************************************************************************************************************************/
   var Login = new Login();
@@ -18,7 +19,7 @@
         init.boas_vindas();
       },
       boas_vindas: function(){
-		AtualizarTabelaProduto();
+        Cruds.getProdutos();
         localStorage.getItem("modo_noturno") == "true" ? $("body").addClass("theme-dark") : $("body").removeClass("theme-dark");
       }
     }
@@ -32,7 +33,8 @@
   function AtualizarTabelaProduto() {
  	var tabProduto = Promessa("TabelaProduto", undefined, undefined);
 	tabProduto.then(function(retorno){
-		$("#tbody_produto").html(retorno);
+    // $("#tbody_produto").html(retorno);
+    console.log(retorno)
 	})
   }
 
@@ -61,20 +63,35 @@
 	$("#btnCadastrarProduto").on("click", function(){
       var data = Formulario.getValores(form)
       if(!jQuery.isEmptyObject(data)){
-        var resultado = Promessa("CadastroProduto", data, undefined);
-		resultado.then(function(retorno){
-   			Toast(retorno);
-			AtualizarTabelaProduto();
-		})
+        Cruds.setProduto(data)
+    //     var resultado = Promessa("CadastroProduto", data, undefined);
+		//     resultado.then(function(retorno){
+   	// 		Toast(retorno);
+		// 	  Cruds.getProdutos();
+		// })
       }
     })
 
     /* Antigo Click
 	$("#btnCadastrarProduto").on("click", function(){
+    myApp.popup.open(".popup-estoque");
       var data = Formulario.getValores(form)
       if(!jQuery.isEmptyObject(data)){
         console.log(data)
       }
     })*/
+  })
+
+  $(".popup-updateProtuto").ready(function(){
+    var page = $(".popup-updateProtuto")
+    var form = $("#formulario_updateProduto")
+
+    $("#btn_updateProduto").on("click", function(){
+      var data = Formulario.getValores(form)
+      if(!jQuery.isEmptyObject(data)){
+        Cruds.updateProduto(data)
+      }
+    })
+
   })
 /* Modal ********************************************************************************************************************************/

@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="br.com.libertas.dto.*" %> 
-<%@ page import="br.com.libertas.db.*" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,8 +131,8 @@
             </div>
             <div class="toolbar toolbar-top tabbar">
               <div class="toolbar-inner">
-                <a href="#produto-listar" class="tab-link tab-link-active">Listar</a>
-                <a href="#produto-cadastrar" class="tab-link">Cadastrar</a>
+                <a id="tab-listarProduto" href="#produto-listar" class="tab-link tab-link-active">Listar</a>
+                <a id="tab-cadastrarProduto" href="#produto-cadastrar" class="tab-link">Cadastrar</a>
               </div>
             </div>
             <div class="tabs">
@@ -149,10 +145,13 @@
                           <tr>
                             <th>Código</th>
                             <th>Descrição</th>
-                            <th>Preçoo Custo</th>
+                            <th>Preço Custo</th>
                             <th>Preço Venda</th>
                             <th>Categoria</th>
                             <th>Fornecedor</th>
+                            <th>Estoque</th>
+                            <th></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody id="tbody_produto">                         
@@ -238,6 +237,14 @@
                         </div>
                       </div>
                     </li>
+                    <li class="item-content item-input col-50">
+                      <div class="item-inner">
+                        <div class="item-title item-label">Estoque</div>
+                        <div class="item-input-wrap">
+                          <input type="number" placeholder="Estoque" name="quantidade" required>
+                        </div>
+                      </div>
+                    </li>
                    <!--   <li class="item-content item-input col-50">
                       <div class="item-inner">
                         <div class="item-title item-label">Fornecedor</div>
@@ -258,9 +265,10 @@
                         </div>
                       </div>
                     </li> -->
+                    <div class="col-65"></div>
+                    <div class="col-33">
                   </ul>
-                  <div class="col-66"></div>
-                  <div class="col-33">
+                 
                     <button class="col button button-small button-round button-fill" id="btnCadastrarProduto">Cadastrar</button>
                   </div>
                 </form>
@@ -312,6 +320,83 @@
                       <tbody></tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal estoque ---------------------------------------------------------------------------------------------------->
+          <div class="popup popup-updateProtuto">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="title">Produto</div>
+                  <div class="right"><a href="#" class="link popup-close"><i class="material-icons ">close</i></a></div>
+                </div>
+              </div>
+              <div class="page-content">
+                <div class="block">
+                  <form class="list no-hairlines-md" id="formulario_updateProduto">
+                    <input type="hidden" name="id">
+                    <ul class="row">
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Código</div>
+                          <div class="item-input-wrap">
+                            <input type="text" placeholder="Código" name="codigo" autocomplete="off" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Descrição</div>
+                          <div class="item-input-wrap">
+                            <input type="text" placeholder="Descrição" name="descricao" autocomplete="off" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Preço Compra</div>
+                          <div class="item-input-wrap">
+                            <input type="number" step="any" placeholder="Preço Compra" name="preco_custo" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Preço Venda</div>
+                          <div class="item-input-wrap">
+                            <input type="number" step="any" placeholder="Preço Venda" name="preco_venda" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Categoria</div>
+                          <div class="item-input-wrap">
+                            <input type="number" step="any" placeholder="Categoria" name="categoria" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-50">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Fornecedor</div>
+                          <div class="item-input-wrap">
+                            <input type="number" step="any" placeholder="Fornecedor" name="cod_fornecedor" required>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content item-input col-100">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Estoque</div>
+                          <div class="item-input-wrap">
+                            <input type="number" placeholder="Estoque" name="quantidade" required>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </form>
+                  <button class="col button button-fill color-blue" id="btn_updateProduto">Salvar</button>
                 </div>
               </div>
             </div>

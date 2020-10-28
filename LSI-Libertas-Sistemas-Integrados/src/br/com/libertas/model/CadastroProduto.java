@@ -46,6 +46,7 @@ public class CadastroProduto extends HttpServlet {
 		p.setPreco_venda(Double.parseDouble(request.getParameter("preco_venda")));
 		p.setCategoria(Integer.parseInt(request.getParameter("categoria")));;
 		p.setCod_fornecedor(Integer.parseInt(request.getParameter("cod_fornecedor")));
+		p.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 		
 		PrintWriter out = response.getWriter();
 		String res = gson.toJson(pDao.inserirProdutoAjax(p));
