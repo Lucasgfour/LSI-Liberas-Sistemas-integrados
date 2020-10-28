@@ -28,28 +28,37 @@ public class ExcluirProduto extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProdutoDao pDao = new ProdutoDao();
+    
+    public void executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	ProdutoDao pDao = new ProdutoDao();
 		Gson gson = new Gson();
 		
 		PrintWriter out = response.getWriter();
-//		System.out.println("id ==>" + request.getParameter("id"));
 		String res = gson.toJson(pDao.excluirProduto(Integer.parseInt(request.getParameter("id"))));
 		out.print(res);
-		System.out.println(res);
-	}
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+//	/**
+//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		ProdutoDao pDao = new ProdutoDao();
+//		Gson gson = new Gson();
+//		
+//		PrintWriter out = response.getWriter();
+////		System.out.println("id ==>" + request.getParameter("id"));
+//		String res = gson.toJson(pDao.excluirProduto(Integer.parseInt(request.getParameter("id"))));
+//		out.print(res);
+//		System.out.println(res);
+//	}
+//
+//	/**
+//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doGet(request, response);
+//	}
 
 }

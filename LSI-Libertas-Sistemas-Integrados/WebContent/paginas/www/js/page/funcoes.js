@@ -17,7 +17,7 @@
         type: "POST",
         dataType: "json",
         data: parametros,
-        url: myApp["data"]["url_raiz"] + "/LSI-Libertas-Sistemas-Integrados/" + tela
+        url: myApp["data"]["url_raiz"] + "/LSI-Libertas-Sistemas-Integrados/Controller?function=" + tela
       })
     ).finally(function() {
       myApp.preloader.hide();
