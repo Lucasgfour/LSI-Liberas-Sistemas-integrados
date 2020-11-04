@@ -36,6 +36,35 @@ CREATE TABLE `cad_produto` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+create table cad_usuario(
+	id int not null auto_increment,
+    nome varchar(30) not null,
+    login varchar(30) not null,
+    senha varchar(32) not null,
+    permissao int not null,
+    PRIMARY KEY(id)
+);
+
+
+create table vendasProduto(
+	id_VendasProdutos int not null auto_increment,
+    pedido int not null,
+    produto varchar(30) not null,
+    preço double not null,
+    PRIMARY KEY(id_VendasProdutos),
+    FOREIGN KEY (pedido) REFERENCES vendas (id_vendas)
+);
+
+
+create table vendas(
+	id_vendas int not null auto_increment,
+    data date,
+    tipo int,
+    PRIMARY KEY(id_vendas)
+);
+
+
 --
 -- Dumping data for table `cad_produto`
 --
