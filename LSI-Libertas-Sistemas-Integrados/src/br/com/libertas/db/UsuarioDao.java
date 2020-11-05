@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import com.google.gson.JsonObject;
 
+import br.com.libertas.dto.Produto;
 import br.com.libertas.dto.Usuario;
 
 public class UsuarioDao {
@@ -171,6 +172,39 @@ public class UsuarioDao {
 		
 		return listaUsuario;
 	}
+	
+	public Usuario verificaLogin (Usuario u) {
+		Usuario uRetorno = null;
+		Conexao con = new Conexao();
+		try {
+			String sql = "SELECT * FROM cad_usuario WHERE login = '" + u.getLogin() + "'";
+			Statement sta = con.getConexao().createStatement();
+			ResultSet res = sta.executeQuery(sql);
+			
+			System.out.println(res.toString());
+			if(res.next()) {
+				if(res.getString("senha").equals(u.getSenha())) {
+					System.out.println("senhas iguais");
+					uRetorno = new Usuario();
+					uRetorno.setId(Integer.parseInt(res.getString("id")));
+					uRetorno.setNome(res.getString("nome"));
+					uRetorno.setLogin(res.getString("login"));
+					uRetorno.setAdministrador(Boolean.parseBoolean(res.getString("administrador")));
+					
+				}
+				else {
+					System.out.println("senhas diferentes");
+				}
+			}
+			res.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		con.desconecta();
+		return uRetorno;
+	}
+	
 	
 	
 	

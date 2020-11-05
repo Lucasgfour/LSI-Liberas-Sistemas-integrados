@@ -44,6 +44,21 @@ public class Controller extends HttpServlet {
 			} else if (funcao.equals("UpdateProduto")) { // Alterar Produto
 				UpdateProduto uProduto = new UpdateProduto();
 				uProduto.executar(request, response);
+			} else if (funcao.equals("CadastroUsuario")) { // Cadastrar usuario 
+				CadastroUsuario cUsuario = new CadastroUsuario();
+				cUsuario.executar(request, response);
+			} else if (funcao.equals("UpdateUsuario")) { // Alterar usuario 
+				UpdateUsuario uUsuario = new UpdateUsuario();
+				uUsuario.executar(request, response);
+			} else if (funcao.equals("ListarUsuario")) { // Listar usuario 
+				ListarUsuario lUsuario = new ListarUsuario();
+				lUsuario.executar(request, response);
+			} else if (funcao.equals("ExcluirUsuario")) { // Excluir usuario 
+				ExcluirUsuario eUsuario = new ExcluirUsuario();
+				eUsuario.executar(request, response);
+			} else if (funcao.equals("VerificaLogin")) { // Verifica login 
+				VerificaLogin vLogin = new VerificaLogin();
+				vLogin.executar(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
