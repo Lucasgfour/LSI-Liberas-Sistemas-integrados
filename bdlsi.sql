@@ -38,11 +38,11 @@ CREATE TABLE `cad_produto` (
 
 
 create table cad_usuario(
-	id int not null auto_increment,
+    	id int not null auto_increment,
     nome varchar(30) not null,
     login varchar(30) not null,
     senha varchar(32) not null,
-    permissao int not null,
+    administrador tinyint(1),
     PRIMARY KEY(id)
 );
 
